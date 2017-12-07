@@ -7,6 +7,20 @@
 using namespace std;
 using namespace sf;
 
+enum class Primitive
+{
+	POINTS,
+	LINES,
+	LINE_STRIP,
+	LINE_LOOP,
+	TRIANGLES,
+	TRIANGLE_STRIP,
+	TRIANGLE_FAN,
+	QUADS,
+	QUAD_STRIP,
+	POLYGON
+};
+
 class Game
 {
 public:
@@ -14,12 +28,15 @@ public:
 	~Game();
 	void run();
 private:
+	Primitive m_currentPrimitive;
 	Window window;
 	bool isRunning = false;
 	void initialize();
 	void update();
 	void draw();
 	void unload();
+
+	
 
 	// // Uncomment for Part 2
 	// // ********************
