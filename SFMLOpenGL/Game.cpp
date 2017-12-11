@@ -51,7 +51,7 @@ void Game::initialize()
 	glMatrixMode(GL_MODELVIEW);
 
 	// Default state of enum class instance - change for debug
-	m_currentPrimitive = Primitive::LINE_STRIP;
+	m_currentPrimitive = Primitive::TRIANGLE_FAN;
 
 	// Bool for tracking game over state
 	isRunning = true;
@@ -75,12 +75,6 @@ void Game::draw()
 
 	switch (m_currentPrimitive)
 	{
-	case Primitive::TRIANGLES:
-		glBegin(GL_TRIANGLES); {
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-		}
 	case Primitive::POINTS:
 		glPointSize(10.0f);
 		glBegin(GL_POINTS); {
@@ -88,15 +82,64 @@ void Game::draw()
 			glVertex3f(-2.0, -2.0, -5.0);
 			glVertex3f(2.0, -2.0, -5.0);
 		}
+		break;
 	case Primitive::LINES:
 		glBegin(GL_LINES); {
 			glVertex3f(0.0, 2.0, -5.0);
 			glVertex3f(0.0, -2.0, -5.0);
 		}
+		break;
 	case Primitive::LINE_STRIP:
 		glBegin(GL_LINE_STRIP); {
 			glVertex3f(0.0, 2.0, -5.0);
 			glVertex3f(0.0, -2.0, -5.0);
+			glVertex3f(2, 0, -5.0);
+			glVertex3f(-2, -0, -5.0);
+			glVertex3f(0.0, 2.0, -5.0);
+		}
+		break;
+	case Primitive::LINE_LOOP:
+		glBegin(GL_LINE_LOOP); {
+			glVertex3f(-1.0f, 0.0f, -5.0);
+			glVertex3f(0.0f, -1.0f, -5.0);
+			glVertex3f(1.0f, 0.0f, -5.0);
+			glVertex3f(0.0f, 1.0f, -5.0);
+		}
+		break;
+	case Primitive::TRIANGLES:
+		glBegin(GL_TRIANGLES); {
+			glVertex3f(-2, -2, -5.0);
+			glVertex3f(-1, -1, -5.0);
+			glVertex3f(-2, -0, -5.0);
+
+			glVertex3f(2, 2, -5.0);
+			glVertex3f(1, 1, -5.0);
+			glVertex3f(2, 0, -5.0);
+		}
+		break;
+	case Primitive::TRIANGLE_STRIP:
+		glBegin(GL_TRIANGLE_STRIP); {
+			glVertex3f(-2, -2, -5.0);
+			glVertex3f(-1, -1, -5.0);
+			glVertex3f(-2, -0, -5.0);
+
+			glVertex3f(2, 2, -5.0);
+			glVertex3f(1, 1, -5.0);
+			glVertex3f(2, 0, -5.0);
+		}
+	case Primitive::TRIANGLE_FAN:
+		glBegin(GL_TRIANGLE_FAN); {
+			glVertex3f(0.0, 1, -5.0);
+			glVertex3f(-1, -1, -5.0);
+			glVertex3f(1, -1, -5.0);
+
+			glVertex3f(1, 2, -5.0);
+			glVertex3f(-2, -2, -5.0);
+			glVertex3f(2, -2, -5.0);
+
+			glVertex3f(2, 3, -5.0);
+			glVertex3f(-3, -3, -5.0);
+			glVertex3f(3, -3, -5.0);
 		}
 		break;
 	}
