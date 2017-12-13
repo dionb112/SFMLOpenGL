@@ -1,22 +1,22 @@
 #include <Game.h>
 
-// // Uncomment for Part 2
-// // ********************
-//bool flip = false;
-//int current = 1;
-// // ********************
+ // Uncomment for Part 2
+ // ********************
+bool flip = false;
+int current = 1;
+ // ********************
 
-//  Game::Game() : window(VideoMode(800, 600), "OpenGL"), primatives(2)
+  
 
-Game::Game() : window(VideoMode(800, 600), "OpenGL")
+Game::Game() : window(VideoMode(800, 600), "OpenGL"), primatives(2)
 {
-	// // Uncomment for Part 2
-	// // ********************
-	// index = glGenLists(primatives);
-	// // ********************
+	 // Uncomment for Part 2
+	 // ********************
+	 index = glGenLists(primatives);
+	 // ********************
 }
 
-Game::~Game(){}
+Game::~Game() {}
 
 void Game::run()
 {
@@ -25,7 +25,7 @@ void Game::run()
 
 	Event event;
 
-	while (isRunning){
+	while (isRunning) {
 
 		cout << "Game running..." << endl;
 
@@ -115,7 +115,7 @@ void Game::update()
 	//	}
 	//}
 	// // ********************
-	
+
 	cout << "Update up" << endl;
 }
 

@@ -35,6 +35,7 @@ private:
 	void update();
 	void draw();
 	void unload();
+	void processEvents();
 
 	
 

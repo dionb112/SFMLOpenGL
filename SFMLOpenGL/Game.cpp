@@ -51,7 +51,7 @@ void Game::initialize()
 	glMatrixMode(GL_MODELVIEW);
 
 	// Default state of enum class instance - change for debug
-	m_currentPrimitive = Primitive::TRIANGLE_FAN;
+	m_currentPrimitive = Primitive::POLYGON;
 
 	// Bool for tracking game over state
 	isRunning = true;
@@ -129,7 +129,7 @@ void Game::draw()
 		}
 	case Primitive::TRIANGLE_FAN:
 		glBegin(GL_TRIANGLE_FAN); {
-			glVertex3f(0.0, 1, -5.0);
+			glVertex3f(-2, 1, -5.0);
 			glVertex3f(-1, -1, -5.0);
 			glVertex3f(1, -1, -5.0);
 
@@ -137,9 +137,50 @@ void Game::draw()
 			glVertex3f(-2, -2, -5.0);
 			glVertex3f(2, -2, -5.0);
 
-			glVertex3f(2, 3, -5.0);
-			glVertex3f(-3, -3, -5.0);
-			glVertex3f(3, -3, -5.0);
+			glVertex3f(2, 1, -5.0);
+			glVertex3f(-1, -3, -5.0);
+			glVertex3f(3, -1, -5.0);
+		}
+		break;
+	case Primitive::QUADS:
+		glBegin(GL_QUADS); {
+			glVertex3f(-2, -1, -5.0);
+			glVertex3f(-1, 0, -5.0);
+			glVertex3f(-0, -1, -5.0);
+			glVertex3f(-1, -2, -5.0);
+
+			glVertex3f(2, 2, -5.0);
+			glVertex3f(2, 0, -5.0);
+			glVertex3f(1, 1, -5.0);
+			glVertex3f(1, 2, -5.0);
+		}
+		break;
+	case Primitive::QUAD_STRIP:
+		glBegin(GL_QUAD_STRIP); {
+			glVertex3f(-2, -1, -5.0);
+			glVertex3f(-1, 0, -5.0);
+			glVertex3f(-0, -1, -5.0);
+			glVertex3f(-1, -2, -5.0);
+
+			glVertex3f(2, 2, -5.0);
+			glVertex3f(2, 0, -5.0);
+			glVertex3f(1, 1, -5.0);
+			glVertex3f(1, 2, -5.0);
+
+			glVertex3f(1.5, 2, -5.0);
+			glVertex3f(2, 1, -5.0);
+			glVertex3f(1.5, 1, -5.0);
+			glVertex3f(1.5, 2, -5.0);
+		}
+		break;
+	case Primitive::POLYGON:
+		glBegin(GL_POLYGON); {
+			glVertex3f(-2, -1, -5.0);
+			glVertex3f(-1, 0, -5.0);
+			glVertex3f(-0, -1, -5.0);
+			glVertex3f(-1, -2, -5.0);
+			glVertex3f(1.5, 2, -5.0);
+
 		}
 		break;
 	}
@@ -154,3 +195,7 @@ void Game::unload()
 	cout << "Cleaning up" << endl;
 }
 
+void Game::processEvents()
+{
+	Event event;
+}
