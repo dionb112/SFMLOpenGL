@@ -29,6 +29,11 @@ public:
 	~Game();
 	void run();
 private:
+	bool m_flip = false;
+	int m_current = 1;
+	double m_rotationAngle;
+	int m_index;
+	GLsizei m_primitives;
 	Primitive m_currentPrimitive;
 	Window window;
 	bool isRunning = false;
