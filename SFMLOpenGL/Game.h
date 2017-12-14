@@ -9,6 +9,7 @@ using namespace sf;
 
 enum class Primitive
 {
+	NONE,
 	POINTS,
 	LINES,
 	LINE_STRIP,

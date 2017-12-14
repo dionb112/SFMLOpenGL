@@ -17,13 +17,8 @@ void Game::run()
 
 		cout << "Game running..." << endl;
 
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-			{
-				isRunning = false;
-			}
-		}
+		processEvents();
+
 		update();
 		draw();
 	}
@@ -51,7 +46,7 @@ void Game::initialize()
 	glMatrixMode(GL_MODELVIEW);
 
 	// Default state of enum class instance - change for debug
-	m_currentPrimitive = Primitive::POLYGON;
+	m_currentPrimitive = Primitive::NONE;
 
 	// Bool for tracking game over state
 	isRunning = true;
@@ -198,4 +193,45 @@ void Game::unload()
 void Game::processEvents()
 {
 	Event event;
+	while (window.pollEvent(event))
+	{
+		if (event.type == Event::Closed)
+		{
+			isRunning = false;
+		}
+		if (event.type == sf::Event::KeyPressed)
+		{
+			switch (event.key.code)
+			{
+			case sf::Keyboard::F1:
+				m_currentPrimitive = Primitive::POINTS;
+				break;
+			case sf::Keyboard::F2:
+				m_currentPrimitive = Primitive::LINES;
+				break;
+			case sf::Keyboard::F3:
+				m_currentPrimitive = Primitive::LINE_STRIP;
+				break;
+			case sf::Keyboard::F4:
+				m_currentPrimitive = Primitive::LINE_LOOP;
+				break;
+			case sf::Keyboard::F5:
+				m_currentPrimitive = Primitive::TRIANGLES;
+				break;
+			case sf::Keyboard::F6:
+				m_currentPrimitive = Primitive::TRIANGLE_STRIP;
+				break;
+			case sf::Keyboard::F7:
+				m_currentPrimitive = Primitive::TRIANGLE_FAN;
+				break;
+			case sf::Keyboard::F8:
+				m_currentPrimitive = Primitive::QUADS;
+				break;
+			case sf::Keyboard::F9:
+				m_currentPrimitive = Primitive::POLYGON;
+				break;
+			}
+		}
+	}
 }
+			
